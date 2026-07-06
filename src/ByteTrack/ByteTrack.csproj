@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>ByteTrack</RootNamespace>
+    <AssemblyName>ByteTrack</AssemblyName>
+    <Description>C# port of ByteTrack (FoundationVision/ByteTrack) multi-object tracker.</Description>
+  </PropertyGroup>
+
+</Project>
