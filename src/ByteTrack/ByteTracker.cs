@@ -24,11 +24,22 @@ public sealed class ByteTracker
     private List<STrack> _lostStracks = new();
     private List<STrack> _removedStracks = new();
 
+    /// <summary>
+    /// Creates a tracker with the default managed Kalman filter.
+    /// </summary>
+    /// <param name="args">Tracker parameters.</param>
+    /// <param name="frameRate">Source frame rate; scales <see cref="ByteTrackerConfig.TrackBuffer"/>.</param>
     public ByteTracker(ByteTrackerConfig args, int frameRate = 30)
         : this(args, new KalmanFilter.KalmanFilter(), frameRate)
     {
     }
 
+    /// <summary>
+    /// Creates a tracker with a custom <see cref="IKalmanFilter"/> implementation.
+    /// </summary>
+    /// <param name="args">Tracker parameters.</param>
+    /// <param name="kalmanFilter">Motion filter used for track prediction.</param>
+    /// <param name="frameRate">Source frame rate; scales <see cref="ByteTrackerConfig.TrackBuffer"/>.</param>
     public ByteTracker(ByteTrackerConfig args, IKalmanFilter kalmanFilter, int frameRate = 30)
     {
         _args = args ?? throw new ArgumentNullException(nameof(args));

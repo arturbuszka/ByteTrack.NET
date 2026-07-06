@@ -1,5 +1,13 @@
 # ByteTrack.NET
 
+[![CI](https://github.com/arturbuszka/ByteTrack.NET/actions/workflows/ci.yml/badge.svg)](https://github.com/arturbuszka/ByteTrack.NET/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)
+
+> **Unofficial C# port.** This is a community port and is **not affiliated with or
+> endorsed by** the original ByteTrack authors. The original work is MIT-licensed,
+> © 2021 Yifu Zhang — see [License & attribution](#license--attribution).
+
 A faithful C# (.NET 8) port of the tracking core of
 [FoundationVision/ByteTrack](https://github.com/FoundationVision/ByteTrack)
 (`yolox/tracker/`).
@@ -73,3 +81,34 @@ The test suite (18 tests) includes **golden-value** checks: the Kalman filter is
 compared against values generated from the original numpy/scipy code
 (`tests/ByteTrack.Tests/Data/kf_golden.json`), and LAPJV against an independent
 `scipy.optimize.linear_sum_assignment` oracle (`lap_golden.json`).
+
+## License & attribution
+
+This project is licensed under the [MIT License](LICENSE).
+
+It is a derivative work (a port to C#) of
+[FoundationVision/ByteTrack](https://github.com/FoundationVision/ByteTrack), which is
+also MIT-licensed. In accordance with the MIT License, the original copyright notice
+is retained:
+
+- Original ByteTrack: Copyright (c) 2021 **Yifu Zhang**
+- C# / .NET port: Copyright (c) 2026 **Artur Buszka**
+
+See [`LICENSE`](LICENSE) for the full text and [`NOTICE`](NOTICE) for a summary of the
+provenance. This port is **not** an official release and is not affiliated with the
+original authors.
+
+## Citation
+
+If you use this port in your research, please cite the original ByteTrack paper:
+
+```bibtex
+@article{zhang2022bytetrack,
+  title   = {ByteTrack: Multi-Object Tracking by Associating Every Detection Box},
+  author  = {Zhang, Yifu and Sun, Peize and Jiang, Yi and Yu, Dongdong and
+             Weng, Fucheng and Yuan, Zehuan and Luo, Ping and Liu, Wenyu and
+             Wang, Xinggang},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year    = {2022}
+}
+```

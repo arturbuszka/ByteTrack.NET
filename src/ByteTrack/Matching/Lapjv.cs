@@ -8,7 +8,7 @@ namespace ByteTrack.Matching;
 /// The core dense solver is a C# port of the classic LAPJV algorithm (Jonker &amp;
 /// Volgenant, 1987). Rectangular inputs and a cost limit are handled exactly as
 /// <c>lap.lapjv</c> does: the matrix is squared out with a large "virtual" cost,
-/// entries above <paramref name="costLimit"/> are replaced by that large cost so
+/// entries above <c>costLimit</c> are replaced by that large cost so
 /// they are never chosen, and any assignment landing on a virtual/over-limit
 /// cell is reported as unmatched (index -1).
 /// </remarks>
