@@ -1,0 +1,47 @@
+name: Release
+
+# Publikuje pakiet na NuGet.org przy opublikowaniu GitHub Release.
+# Używa Trusted Publishing (OIDC) — bez klucza API w sekretach.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # wymagane dla OIDC / NuGet Trusted Publishing
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore ByteTrack.sln
+
+      - name: Build
+        run: dotnet build ByteTrack.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test ByteTrack.sln -c Release --no-build --verbosity normal
+
+      - name: Pack
+        run: dotnet pack src/ByteTrack/ByteTrack.csproj -c Release --no-build -o ./artifacts
+
+      - name: NuGet login (Trusted Publishing → tymczasowy klucz)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: arturbuszka   # nazwa konta / właściciela na NuGet.org
+
+      - name: Push
+        run: >
+          dotnet nuget push ./artifacts/*.nupkg
+          --api-key ${{ steps.login.outputs.NUGET_API_KEY }}
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
