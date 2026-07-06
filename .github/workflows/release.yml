@@ -37,7 +37,7 @@ jobs:
         uses: NuGet/login@v1
         id: login
         with:
-          user: arturbuszka   # nazwa konta / właściciela na NuGet.org
+          user: buszek785   # nazwa konta / właściciela na NuGet.org
 
       - name: Push
         run: >
